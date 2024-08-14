@@ -26,7 +26,7 @@ RUN if [-z "$GCS_KEY_FILE"]; then echo "missing GCS_KEY_FILE env file which is r
 RUN echo $GCS_KEY_FILE >> $GCS_KEY_FILE_PATH
 
 RUN printf "[Credentials]\n\
-            gs_service_key_file = $GCS_KEY_FIL" > $BOTO_CONFIG_PATH
+            gs_service_key_file = $GCS_KEY_FILE_PATH" > $BOTO_CONFIG_PATH
 
 CMD export ARCHIVE_NAME=${BACKUP_DIR}\/$(date "+%Y-%m-%dT%H:%M:%SZ").sql.gz; \
     pg_dump -h ${PGHOST} -p ${PGPORT} -U ${PGUSER} | \
