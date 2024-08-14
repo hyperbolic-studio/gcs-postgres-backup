@@ -1,0 +1,18 @@
+services:
+  backup:
+    image: gcs-postgres-backup
+    build:
+      context: .
+      args:
+        GCS_KEY_FILE: ${GCS_KEY_FILE}
+    environment:
+      PGHOST: ${PGHOST}
+      GCS_BUCKET: ${GCS_BUCKET}
+    volumes:
+      - .data:/tmp
+    networks:
+      - postgres
+
+networks:
+  postgres:
+    external: true
